@@ -53,6 +53,26 @@ class PyCampScheduleProblem:
             res.append((project, random_slot))
         return res
 
+    def print_state(self, state):
+        sorted_by_slot = sorted(state, key=itemgetter(1))
+        lines = []
+        for slot in self.data.available_slots:
+            lines.append('+{:-<6s}+{:-<32s}+{:-<32s}+'.format('', '', ''))
+            slot_project_lines = []
+            for project, project_slot in sorted_by_slot:
+                if project_slot == slot:
+                    responsables = ', '.join(problem.data.projects[project].responsables)
+                    slot_project_lines.append(
+                        '|{:^6s}| {:30s} | {:30s} |'.format(slot, project, responsables)
+                    )
+
+            if len(slot_project_lines) > 0:
+                lines.extend(slot_project_lines)
+            else:
+                lines.append('|{:^6s}|{:32s}|{:32s}|'.format(slot, '', ''))
+        lines.append('+{:-<6s}+{:-<32s}+{:-<32s}+'.format('', '', ''))
+        print('\n'.join(lines))
+
 
 def hill_climbing(problem, initial_state):
     current_state = initial_state
