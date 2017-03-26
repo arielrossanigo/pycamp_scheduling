@@ -6,6 +6,8 @@ from operator import itemgetter
 
 from munch import munchify
 
+IMPOSIBLE_COST = 1000000
+
 
 def schedule(data):
     data = json.loads(data)
@@ -46,7 +48,14 @@ class PyCampScheduleProblem:
                 set_resp_1 = set(self.data.projects[proj1].responsables)
                 set_resp_2 = set(self.data.projects[proj2].responsables)
                 if len(set_resp_1.intersection(set_resp_2)) > 0:
-                    cost += 1000
+                    cost += IMPOSIBLE_COST
+
+        # Cost for having projects in slots where responsables are not available
+        for project, slot in state:
+            responsables = self.data.projects[project].responsables
+            for resp in responsables:
+                if slot not in self.data.responsable_available_slots[resp]:
+                    cost += IMPOSIBLE_COST
 
         # Cost for having multiple projects in the same slot and preference
         # for more occupadied slots at the begining
