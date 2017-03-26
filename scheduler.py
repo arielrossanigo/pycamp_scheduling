@@ -1,5 +1,8 @@
 import json
+import random
 from operator import itemgetter
+
+from munch import munchify
 
 
 def schedule(data):
@@ -11,7 +14,8 @@ def schedule(data):
 
 class PyCampScheduleProblem:
     def __init__(self, data):
-        self.data = data
+        self.data = munchify(data)
+        self.project_list = list(self.data.projects.keys())
 
     def neighboors(self, state):
         ''''Returns the list of neighboors of the state'''
@@ -22,7 +26,11 @@ class PyCampScheduleProblem:
         pass
 
     def generate_random_state(self):
-        pass
+        res = []
+        for project in self.project_list:
+            random_slot = random.choice(self.data.available_slots)
+            res.append((project, random_slot))
+        return res
 
 
 def hill_climbing(problem, initial_state):
