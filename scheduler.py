@@ -35,10 +35,14 @@ class PyCampScheduleProblem:
         '''Returns the objective value of the state'''
         cost = 0
 
+        slots_and_projects = {
+            slot: [proj for proj, proj_slot in state if proj_slot == slot]
+            for slot in self.data.available_slots
+        }
+
         # Cost for having responsables collisions
-        state_as_dict = dict(state)
-        for proj1, proj2 in combinations(self.project_list, 2):
-            if state_as_dict[proj1] == state_as_dict[proj2]:
+        for slot, slot_projects in slots_and_projects.items():
+            for proj1, proj2 in combinations(slot_projects, 2):
                 set_resp_1 = set(self.data.projects[proj1].responsables)
                 set_resp_2 = set(self.data.projects[proj2].responsables)
                 if len(set_resp_1.intersection(set_resp_2)) > 0:
