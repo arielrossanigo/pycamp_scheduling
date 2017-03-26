@@ -19,7 +19,16 @@ class PyCampScheduleProblem:
 
     def neighboors(self, state):
         ''''Returns the list of neighboors of the state'''
-        pass
+        neighboors = []
+        for project in self.project_list:
+            for slot in self.data.available_slots:
+                d = dict(state)
+                current_slot = d[project]
+                if current_slot != slot:
+                    d[project] = slot
+                    new_state = list(d.items())
+                    neighboors.append(new_state)
+        return neighboors
 
     def value(self, state):
         '''Returns the objective value of the state'''
