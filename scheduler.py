@@ -99,10 +99,11 @@ def hill_climbing(problem, initial_state):
             return current_state
 
 
-def random_restart_hill_climbing(problem, max_iters=100):
+def random_restart_hill_climbing(problem, max_iters=100, max_iters_without_improvement=10):
     best_state = None
     best_value = None
 
+    number_of_iterations_without_improvement = 0
     for iteration in range(max_iters):
         print('Iteration {} # Best value {}'.format(iteration, best_value))
         initial_state = problem.generate_random_state()
@@ -113,8 +114,11 @@ def random_restart_hill_climbing(problem, max_iters=100):
             best_value = current_value
             best_state = current_solution
 
-        if best_value == 0:
-            break
+            number_of_iterations_without_improvement = 0
+        else:
+            number_of_iterations_without_improvement += 1
+            if number_of_iterations_without_improvement == max_iters_without_improvement:
+                break
 
     return best_state
 
@@ -123,4 +127,7 @@ if __name__ == '__main__':
 
     data = json.loads(data)
     problem = PyCampScheduleProblem(data)
-    best_solution = random_restart_hill_climbing(problem)
+    best_solution = random_restart_hill_climbing(problem,
+                                                 max_iters=10000,
+                                                 max_iters_without_improvement=10)
+    problem.print_state(best_solution)
