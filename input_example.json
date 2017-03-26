@@ -1,0 +1,605 @@
+{
+  "available slots": [
+    "A3",
+    "A4",
+    "A5",
+    "B2",
+    "B3",
+    "B4",
+    "B5",
+    "C1",
+    "C2",
+    "C3",
+    "C4"
+  ],
+  "responsable available slots": {
+    "Facu": [
+      "A3",
+      "A4",
+      "A5",
+      "B2",
+      "B3",
+      "B4",
+      "B5",
+      "C1",
+      "C2",
+      "C3",
+      "C4"
+    ],
+    "Mario": [
+      "A3",
+      "A4",
+      "A5",
+      "B2",
+      "B3",
+      "B4",
+      "B5",
+      "C1",
+      "C2",
+      "C3",
+      "C4"
+    ],
+    "Manuq": [
+      "A3",
+      "A4",
+      "A5",
+      "B2",
+      "B3",
+      "B4",
+      "B5",
+      "C1",
+      "C2",
+      "C3",
+      "C4"
+    ],
+    "Ariel": [
+      "A3",
+      "A4",
+      "A5",
+      "B2",
+      "B3",
+      "B4",
+      "B5"
+    ],
+    "Diego": [
+      "A3",
+      "A4",
+      "A5",
+      "B2",
+      "B3",
+      "B4",
+      "B5",
+      "C1",
+      "C2",
+      "C3",
+      "C4"
+    ],
+    "Litox": [
+      "B3",
+      "B4",
+      "B5",
+      "C1",
+      "C2",
+      "C3",
+      "C4"
+    ],
+    "Fisa": [
+      "A3",
+      "A4",
+      "A5",
+      "B2",
+      "B3",
+      "B4",
+      "B5",
+      "C1",
+      "C2",
+      "C3",
+      "C4"
+    ],
+    "David": [
+      "A3",
+      "A4",
+      "A5",
+      "B2",
+      "B3",
+      "B4",
+      "B5",
+      "C1",
+      "C2",
+      "C3",
+      "C4"
+    ],
+    "Gilgamezh": [
+      "A3",
+      "A4",
+      "A5",
+      "B2",
+      "B3",
+      "B4",
+      "B5",
+      "C1",
+      "C2",
+      "C3",
+      "C4"
+    ],
+    "Matias": [
+      "A3",
+      "A4",
+      "A5",
+      "B2",
+      "B3",
+      "B4",
+      "B5",
+      "C1",
+      "C2",
+      "C3",
+      "C4"
+    ],
+    "Agustin": [
+      "A3",
+      "A4",
+      "A5",
+      "B2",
+      "B3",
+      "B4",
+      "B5",
+      "C1",
+      "C2",
+      "C3",
+      "C4"
+    ],
+    "Zoe": [
+      "A3",
+      "A4",
+      "A5",
+      "B2",
+      "B3",
+      "B4",
+      "B5",
+      "C1",
+      "C2",
+      "C3",
+      "C4"
+    ],
+    "Luri": [
+      "A3",
+      "A4",
+      "A5",
+      "B2",
+      "B3",
+      "B4",
+      "B5",
+      "C1",
+      "C2",
+      "C3",
+      "C4"
+    ]
+  },
+  "projects": {
+    "Encajonar apps": {
+      "votes": [
+        "Y",
+        "F",
+        "E",
+        "N",
+        "K",
+        "Mario",
+        "Luri",
+        "J",
+        "W"
+      ],
+      "responsables": [
+        "Manuq"
+      ],
+      "theme": "web",
+      "difficult_level": 1
+    },
+    "LabJM": {
+      "votes": [
+        "David",
+        "W",
+        "I",
+        "Q",
+        "Y",
+        "Fisa",
+        "C",
+        "G",
+        "O",
+        "Z",
+        "Manuq",
+        "H",
+        "U",
+        "E",
+        "Mario",
+        "R",
+        "Facu",
+        "Litox",
+        "B"
+      ],
+      "responsables": [
+        "Agustin"
+      ],
+      "theme": "comunity",
+      "difficult_level": 1
+    },
+    "Recordium": {
+      "votes": [
+        "X",
+        "Ariel",
+        "Manuq",
+        "U",
+        "W",
+        "I",
+        "T",
+        "A"
+      ],
+      "responsables": [
+        "Facu"
+      ],
+      "theme": "web",
+      "difficult_level": 1
+    },
+    "Fades": {
+      "votes": [
+        "Matias",
+        "Litox",
+        "Manuq",
+        "A",
+        "R",
+        "X",
+        "N",
+        "Agustin",
+        "Ariel",
+        "H",
+        "P",
+        "K",
+        "David",
+        "U",
+        "Z",
+        "B",
+        "W",
+        "T",
+        "F",
+        "V",
+        "Y"
+      ],
+      "responsables": [
+        "Facu",
+        "Gilgamezh"
+      ],
+      "theme": "ia",
+      "difficult_level": 3
+    },
+    "PyCamp voting manager": {
+      "votes": [
+        "Y",
+        "K"
+      ],
+      "responsables": [
+        "Zoe"
+      ],
+      "theme": "web",
+      "difficult_level": 1
+    },
+    "Radio to podcast": {
+      "votes": [
+        "Agustin",
+        "C",
+        "T",
+        "Litox",
+        "L",
+        "A",
+        "Fisa",
+        "Diego",
+        "David",
+        "W",
+        "G",
+        "Z",
+        "D",
+        "Gilgamezh",
+        "X",
+        "R",
+        "H",
+        "Luri",
+        "Manuq",
+        "Facu",
+        "Q",
+        "J",
+        "Matias",
+        "Mario",
+        "O",
+        "Zoe",
+        "F",
+        "E",
+        "K"
+      ],
+      "responsables": [
+        "Diego"
+      ],
+      "theme": "",
+      "difficult_level": 1
+    },
+    "Programar, que es eso?": {
+      "votes": [
+        "H",
+        "G",
+        "Diego"
+      ],
+      "responsables": [
+        "Matias",
+        "David"
+      ],
+      "priority slots": [
+        "A3"
+      ],
+      "theme": "web",
+      "difficult_level": 2
+    },
+    "Raspi": {
+      "votes": [
+        "X",
+        "Mario",
+        "W",
+        "Matias",
+        "E",
+        "Z",
+        "N",
+        "Y",
+        "F",
+        "B",
+        "G",
+        "L",
+        "V",
+        "Facu",
+        "Q",
+        "H",
+        "J",
+        "D",
+        "Litox"
+      ],
+      "responsables": [
+        "David"
+      ],
+      "theme": "desktop",
+      "difficult_level": 3
+    },
+    "Web PyAr": {
+      "votes": [
+        "Z",
+        "U",
+        "R",
+        "N",
+        "M",
+        "F",
+        "E",
+        "X"
+      ],
+      "responsables": [
+        "Litox"
+      ],
+      "theme": "desktop",
+      "difficult_level": 1
+    },
+    "Metaprogramacion": {
+      "votes": [
+        "V",
+        "Q",
+        "Luri",
+        "R",
+        "U",
+        "G",
+        "Zoe",
+        "Facu",
+        "Agustin",
+        "H",
+        "Ariel",
+        "L",
+        "N"
+      ],
+      "responsables": [
+        "David"
+      ],
+      "theme": "ia",
+      "difficult_level": 2
+    },
+    "Linkode": {
+      "votes": [
+        "J",
+        "O",
+        "U",
+        "Litox",
+        "David",
+        "A",
+        "Manuq",
+        "Facu",
+        "H",
+        "Fisa",
+        "C",
+        "F",
+        "Ariel",
+        "M",
+        "Q",
+        "Mario",
+        "V",
+        "D",
+        "K",
+        "N",
+        "Luri",
+        "Matias",
+        "W",
+        "X",
+        "Gilgamezh",
+        "Agustin",
+        "B",
+        "G",
+        "Y",
+        "T"
+      ],
+      "responsables": [
+        "Facu",
+        "Matias"
+      ],
+      "theme": "hardware",
+      "difficult_level": 1
+    },
+    "Easy Camp": {
+      "votes": [
+        "David",
+        "M",
+        "Mario",
+        "G",
+        "R"
+      ],
+      "responsables": [
+        "Matias",
+        "Luri"
+      ],
+      "theme": "desktop",
+      "difficult_level": 1
+    },
+    "Choppycamp": {
+      "votes": [
+        "Luri",
+        "Mario"
+      ],
+      "responsables": [
+        "Fisa"
+      ],
+      "theme": "web",
+      "difficult_level": 3
+    },
+    "Pilas": {
+      "votes": [
+        "V",
+        "J",
+        "Ariel",
+        "B",
+        "David",
+        "G",
+        "Z",
+        "C",
+        "K",
+        "Litox",
+        "Luri",
+        "W",
+        "T",
+        "A",
+        "N",
+        "L",
+        "Facu",
+        "Matias"
+      ],
+      "responsables": [
+        "Manuq"
+      ],
+      "theme": "ia",
+      "difficult_level": 3
+    },
+    "Cuentos a epub": {
+      "votes": [
+        "V",
+        "Manuq",
+        "Gilgamezh",
+        "T",
+        "Ariel",
+        "Q",
+        "F",
+        "Mario",
+        "Facu"
+      ],
+      "responsables": [
+        "Diego"
+      ],
+      "theme": "ia",
+      "difficult_level": 1
+    },
+    "Vis de redes neuronales": {
+      "votes": [
+        "F",
+        "Fisa",
+        "B",
+        "P",
+        "G",
+        "W",
+        "N",
+        "A",
+        "U",
+        "Matias",
+        "O",
+        "David",
+        "Agustin",
+        "D",
+        "Mario",
+        "R",
+        "H",
+        "Y",
+        "K",
+        "Luri",
+        "S",
+        "T",
+        "X",
+        "L"
+      ],
+      "responsables": [
+        "Ariel"
+      ],
+      "theme": "mobile",
+      "difficult_level": 3
+    },
+    "Moravec": {
+      "votes": [
+        "Ariel",
+        "M",
+        "T",
+        "S",
+        "Z",
+        "V",
+        "K",
+        "J",
+        "Mario",
+        "David",
+        "O",
+        "I",
+        "Manuq",
+        "L",
+        "Zoe",
+        "U",
+        "F",
+        "Facu",
+        "Y",
+        "Fisa",
+        "N",
+        "E",
+        "R",
+        "P",
+        "B",
+        "Gilgamezh",
+        "X",
+        "W",
+        "A"
+      ],
+      "responsables": [
+        "Mario"
+      ],
+      "theme": "web",
+      "difficult_level": 1
+    },
+    "Mirror Pypi": {
+      "votes": [
+        "H",
+        "X",
+        "G",
+        "E",
+        "Z",
+        "Zoe",
+        "Facu"
+      ],
+      "responsables": [
+        "Fisa",
+        "Gilgamezh"
+      ],
+      "theme": "desktop",
+      "difficult_level": 2
+    }
+  }
+}
