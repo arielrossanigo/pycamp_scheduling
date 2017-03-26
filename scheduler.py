@@ -1,5 +1,6 @@
 import json
 import random
+from collections import OrderedDict
 from itertools import combinations
 from operator import itemgetter
 
@@ -35,10 +36,9 @@ class PyCampScheduleProblem:
         '''Returns the objective value of the state'''
         cost = 0
 
-        slots_and_projects = {
-            slot: [proj for proj, proj_slot in state if proj_slot == slot]
-            for slot in self.data.available_slots
-        }
+        slots_and_projects = OrderedDict()
+        for slot in self.data.available_slots:
+            slots_and_projects[slot] = [proj for proj, proj_slot in state if proj_slot == slot]
 
         # Cost for having responsables collisions
         for slot, slot_projects in slots_and_projects.items():
@@ -47,6 +47,12 @@ class PyCampScheduleProblem:
                 set_resp_2 = set(self.data.projects[proj2].responsables)
                 if len(set_resp_1.intersection(set_resp_2)) > 0:
                     cost += 1000
+
+        # Cost for having multiple projects in the same slot and preference
+        # for more occupadied slots at the begining
+        for slot_number, (slot, slot_projects) in enumerate(slots_and_projects.items()):
+            project_quantity = len(slot_projects)
+            cost += (3 ** project_quantity) + (slot_number * project_quantity)
 
         return -1 * cost
 
