@@ -2,8 +2,8 @@ import json
 import random
 
 input_example = {
-    "available slots": ["A3", "A4", "A5", "B2", "B3", "B4", "B5", "C1", "C2", "C3", "C4"],
-    "responsable available slots": {
+    "available_slots": ["A3", "A4", "A5", "B2", "B3", "B4", "B5", "C1", "C2", "C3", "C4"],
+    "responsable_available_slots": {
         "Matias": ["A3", "A4", "A5", "B2", "B3", "B4", "B5", "C1", "C2", "C3", "C4"],
         "David": ["A3", "A4", "A5", "B2", "B3", "B4", "B5", "C1", "C2", "C3", "C4"],
         "Ariel": ["A3", "A4", "A5", "B2", "B3", "B4", "B5"],
@@ -19,7 +19,7 @@ input_example = {
         "Luri": ["A3", "A4", "A5", "B2", "B3", "B4", "B5", "C1", "C2", "C3", "C4"]
     },
     "projects": {
-        "Programar, que es eso?": {"responsables": ["Matias", "David"], "priority slots": ['A3']},
+        "Programar, que es eso?": {"responsables": ["Matias", "David"], "priority_slots": ['A3']},
         "Vis de redes neuronales": {"responsables": ["Ariel"]},
         "Mirror Pypi": {"responsables": ["Fisa", "Gilgamezh"]},
         "Linkode": {"responsables": ["Facu", "Matias"]},
@@ -41,16 +41,18 @@ input_example = {
 }
 
 attendes = (list("ABCDEFGHIJKLMNOPQRSTUVWXYZ") +
-            list(set(input_example["responsable available slots"].keys())))
+            list(set(input_example["responsable_available_slots"].keys())))
 themes = ['web', 'desktop', 'mobile', 'ia', 'hardware', 'comunity', '']
 difficult_levels = [1, 2, 3]
 
 output_example = {}
-slots = input_example['available slots']
+slots = input_example['available_slots']
 for i, (project_name, project) in enumerate(input_example["projects"].items()):
     project['votes'] = random.sample(attendes, random.randint(1, len(attendes)))
     project['difficult_level'] = random.choice(difficult_levels)
     project['theme'] = random.choice(themes)
+    if "priority_slots" not in project:
+        project["priority_slots"] = []
 
     output_example[project_name] = slots[i % len(slots)]
 
