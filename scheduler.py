@@ -4,30 +4,33 @@ from operator import itemgetter
 
 def schedule(data):
     data = json.loads(data)
-    print(data)
+    problem = PyCampScheduleProblem(data)
+    best_solution = random_restart_hill_climbing(problem)
+    return best_solution
 
 
-class State:
+class PyCampScheduleProblem:
+    def __init__(self, data):
+        self.data = data
 
-    def neighboors(self):
+    def neighboors(self, state):
         ''''Returns the list of neighboors of the state'''
         pass
 
-    def value(self):
+    def value(self, state):
         '''Returns the objective value of the state'''
         pass
 
-    @classmethod
-    def generate_random_state(cls):
+    def generate_random_state(self):
         pass
 
 
-def hill_climbing(initial_state):
+def hill_climbing(problem, initial_state):
     current_state = initial_state
-    current_value = current_state.value()
+    current_value = problem.value(initial_state)
 
     while True:
-        neighboors = [(n, n.value()) for n in current_state.neighboors()]
+        neighboors = [(n, problem.value(n)) for n in problem.neighboors(current_state)]
         best_neighbour, best_value = max(neighboors, itemgetter(1))
 
         if best_value > current_value:
@@ -37,14 +40,14 @@ def hill_climbing(initial_state):
             return current_state
 
 
-def random_restart_hill_climbing(max_iters=100):
+def random_restart_hill_climbing(problem, max_iters=100):
     best_state = None
     best_value = None
 
     for iteration in range(max_iters):
-        initial_state = State.generate_random_state()
-        current_solution = hill_climbing(initial_state)
-        current_value = current_solution.value()
+        initial_state = problem.generate_random_state()
+        current_solution = hill_climbing(problem, initial_state)
+        current_value = problem.value(current_solution)
 
         if best_value is None or current_value > best_value:
             best_value = current_value
