@@ -1,5 +1,6 @@
 import json
 import random
+from itertools import combinations
 from operator import itemgetter
 
 from munch import munchify
@@ -32,7 +33,18 @@ class PyCampScheduleProblem:
 
     def value(self, state):
         '''Returns the objective value of the state'''
-        pass
+        cost = 0
+
+        # Cost for having responsables collisions
+        state_as_dict = dict(state)
+        for proj1, proj2 in combinations(self.project_list, 2):
+            if state_as_dict[proj1] == state_as_dict[proj2]:
+                set_resp_1 = set(self.data.projects[proj1].responsables)
+                set_resp_2 = set(self.data.projects[proj2].responsables)
+                if len(set_resp_1.intersection(set_resp_2)) > 0:
+                    cost += 1000
+
+        return -1 * cost
 
     def generate_random_state(self):
         res = []
@@ -48,7 +60,7 @@ def hill_climbing(problem, initial_state):
 
     while True:
         neighboors = [(n, problem.value(n)) for n in problem.neighboors(current_state)]
-        best_neighbour, best_value = max(neighboors, itemgetter(1))
+        best_neighbour, best_value = max(neighboors, key=itemgetter(1))
 
         if best_value > current_value:
             current_value = best_value
