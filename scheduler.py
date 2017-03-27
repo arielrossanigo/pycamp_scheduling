@@ -120,25 +120,35 @@ class PyCampScheduleProblem:
         return res
 
     def print_state(self, state):
+        def empty_slot_template(slot):
+            return '|{:^4s}|{:26s}|{:21s}|{:4s}|{:4s}|{:11s}|'.format(slot, '', '', '', '', '')
+
+        separator_line = '+{:-<4s}+{:-<26s}+{:-<21s}+{:-<4s}+{:-<4s}+{:-<11s}+'.format(
+            '', '', '', '', '', ''
+        )
+
         sorted_by_slot = sorted(state, key=itemgetter(1))
         lines = []
         for slot in self.data.available_slots:
-            lines.append('+{:-<6s}+{:-<32s}+{:-<32s}+{:-<4s}+'.format('', '', '', ''))
+            lines.append(separator_line)
             slot_project_lines = []
             for project, project_slot in sorted_by_slot:
                 if project_slot == slot:
-                    responsables = ', '.join(problem.data.projects[project].responsables)
-                    number_of_votes = len(problem.data.projects[project].votes)
+                    project_data = self.data.projects[project]
+                    responsables = ', '.join(project_data.responsables)
+                    number_of_votes = len(project_data.votes)
                     slot_project_lines.append(
-                        '|{:^6s}| {:30s} | {:30s} | {:2d} |'.format(
-                            slot, project, responsables, number_of_votes)
+                        '|{:^4s}| {:25s}| {:20s}| {:2d} | {:2d} | {:10s}|'.format(
+                            slot, project, responsables, number_of_votes,
+                            project_data.difficult_level, project_data.theme
+                        )
                     )
 
             if len(slot_project_lines) > 0:
                 lines.extend(slot_project_lines)
             else:
-                lines.append('|{:^6s}|{:32s}|{:32s}|{:4s}|'.format(slot, '', '', ''))
-        lines.append('+{:-<6s}+{:-<32s}+{:-<32s}+{:-<4s}+'.format('', '', '', ''))
+                lines.append(empty_slot_template(slot))
+        lines.append(separator_line)
         print('\n'.join(lines))
 
 
