@@ -45,6 +45,8 @@ class PyCampScheduleProblem:
         most_voted_cost = 0
         slot_population_cost = 0
         project_not_in_priority_slot_cost = 0
+        same_levels_cost = 0
+        same_theme_cost = 0
 
         slots_and_projects = OrderedDict()
         for slot in self.data.available_slots:
@@ -52,18 +54,29 @@ class PyCampScheduleProblem:
 
         for slot_number, (slot, slot_projects) in enumerate(slots_and_projects.items()):
             for proj1, proj2 in combinations(slot_projects, 2):
-                set_resp_1 = set(self.data.projects[proj1].responsables)
-                set_resp_2 = set(self.data.projects[proj2].responsables)
+                proj1_data = self.data.projects[proj1]
+                proj2_data = self.data.projects[proj2]
+
+                set_resp_1 = set(proj1_data.responsables)
+                set_resp_2 = set(proj2_data.responsables)
 
                 # Cost for having responsables collisions
                 if len(set_resp_1.intersection(set_resp_2)) > 0:
                     responsables_collisions_cost += IMPOSIBLE_COST
 
                 # Cost for having voters collisions
-                set_vot_1 = set(self.data.projects[proj1].votes)
-                set_vot_2 = set(self.data.projects[proj2].votes)
+                set_vot_1 = set(proj1_data.votes)
+                set_vot_2 = set(proj2_data.votes)
                 votes_collisions = len(set_vot_1.intersection(set_vot_2))
                 participant_collisions_cost += votes_collisions
+
+                # Cost for same level
+                if proj1_data.difficult_level == proj2_data.difficult_level:
+                    same_levels_cost += 1
+
+                # Cost for same theme
+                if proj1_data.theme == proj2_data.theme:
+                    same_theme_cost += 1
 
             # Cost for having multiple projects in the same slot and preference
             # for more occupadied slots at the begining
@@ -94,7 +107,9 @@ class PyCampScheduleProblem:
             responsable_not_available_cost +
             most_voted_cost +
             slot_population_cost +
-            project_not_in_priority_slot_cost
+            project_not_in_priority_slot_cost +
+            same_levels_cost +
+            same_theme_cost
         )
 
     def generate_random_state(self):
@@ -148,7 +163,7 @@ def random_restart_hill_climbing(problem, max_iters=100, max_iters_without_impro
 
     number_of_iterations_without_improvement = 0
     for iteration in range(max_iters):
-        print('Iteration {} # Best value {}'.format(iteration, best_value))
+        print('Iteration {:3d} # Best value {}'.format(iteration, best_value))
         initial_state = problem.generate_random_state()
         current_solution = hill_climbing(problem, initial_state)
         current_value = problem.value(current_solution)
