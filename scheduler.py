@@ -85,7 +85,8 @@ class PyCampScheduleProblem:
 
             # Cost according to the quantity of votes. It's prefered that most voted projects
             # were at the begining
-            vote_quantity = sum([len(self.data.projects[project]) for project in slot_projects])
+            vote_quantity = sum([len(self.data.projects[project].votes)
+                                 for project in slot_projects])
             most_voted_cost += (slot_number * vote_quantity) / self.total_participants
 
         for project, slot in state:
@@ -197,5 +198,5 @@ if __name__ == '__main__':
     problem = PyCampScheduleProblem(data)
     best_solution = random_restart_hill_climbing(problem,
                                                  max_iters=10000,
-                                                 max_iters_without_improvement=5)
+                                                 max_iters_without_improvement=10)
     problem.print_state(best_solution)
