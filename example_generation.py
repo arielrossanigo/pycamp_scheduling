@@ -1,6 +1,27 @@
 import json
 import random
 
+by_project_number_of_votes = {
+    "Programar, que es eso?": 15,
+    "Vis de redes neuronales": 3,
+    "Mirror Pypi": 12,
+    "Linkode": 5,
+    "Recordium": 6,
+    "Radio to podcast": 3,
+    "Choppycamp": 12,
+    "LabJM": 2,
+    "Pilas": 10,
+    "Cuentos a epub": 3,
+    "Web PyAr": 8,
+    "Moravec": 4,
+    "Raspi": 2,
+    "Fades": 5,
+    "PyCamp voting manager": 9,
+    "Easy Camp": 7,
+    "Metaprogramacion": 4,
+    "Encajonar apps": 6
+}
+
 input_example = {
     "available_slots": ["A3", "A4", "A5", "B2", "B3", "B4", "B5", "C1", "C2", "C3", "C4"],
     "responsable_available_slots": {
@@ -48,7 +69,7 @@ difficult_levels = [1, 2, 3]
 output_example = {}
 slots = input_example['available_slots']
 for i, (project_name, project) in enumerate(input_example["projects"].items()):
-    project['votes'] = random.sample(attendes, random.randint(1, len(attendes)))
+    project['votes'] = random.sample(attendes, by_project_number_of_votes[project_name])
     project['difficult_level'] = random.choice(difficult_levels)
     project['theme'] = random.choice(themes)
     if "priority_slots" not in project:
