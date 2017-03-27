@@ -140,11 +140,31 @@ class PyCampScheduleProblem:
 
     def print_state(self, state):
         def empty_slot_template(slot):
-            return '|{:^4s}|{:26s}|{:21s}|{:4s}|{:4s}|{:11s}|'.format(slot, '', '', '', '', '')
+            return '|{:^4s}|{:26s}|{:21s}|{:4s}|{:4s}|{:11s}|{:4s}|'.format(
+                slot, '', '', '', '', '', ''
+            )
 
-        separator_line = '+{:-<4s}+{:-<26s}+{:-<21s}+{:-<4s}+{:-<4s}+{:-<11s}+'.format(
-            '', '', '', '', '', ''
+        separator_line = '+{:-<4s}+{:-<26s}+{:-<21s}+{:-<4s}+{:-<4s}+{:-<11s}+{:-<4s}+'.format(
+            '', '', '', '', '', '', ''
         )
+
+        slots_and_projects = OrderedDict()
+        for slot in self.data.available_slots:
+            slots_and_projects[slot] = [proj for proj, proj_slot in state if proj_slot == slot]
+
+        by_project_votes_collisions = {}
+        for slot_number, (slot, slot_projects) in enumerate(slots_and_projects.items()):
+            total_collisions_on_slot = 0
+            for proj1, proj2 in combinations(slot_projects, 2):
+                proj1_data = self.data.projects[proj1]
+                proj2_data = self.data.projects[proj2]
+                set_vot_1 = set(proj1_data.votes)
+                set_vot_2 = set(proj2_data.votes)
+                votes_collisions = len(set_vot_1.intersection(set_vot_2))
+                total_collisions_on_slot += votes_collisions
+
+            for proj in slot_projects:
+                by_project_votes_collisions[proj] = total_collisions_on_slot
 
         sorted_by_slot = sorted(state, key=itemgetter(1))
         lines = []
@@ -157,9 +177,10 @@ class PyCampScheduleProblem:
                     responsables = ', '.join(project_data.responsables)
                     number_of_votes = len(project_data.votes)
                     slot_project_lines.append(
-                        '|{:^4s}| {:25s}| {:20s}| {:2d} | {:2d} | {:10s}|'.format(
+                        '|{:^4s}| {:25s}| {:20s}| {:2d} | {:2d} | {:10s}| {:2d} |'.format(
                             slot, project, responsables, number_of_votes,
-                            project_data.difficult_level, project_data.theme
+                            project_data.difficult_level, project_data.theme,
+                            by_project_votes_collisions[project]
                         )
                     )
 
