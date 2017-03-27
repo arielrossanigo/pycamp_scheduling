@@ -17,8 +17,26 @@ def schedule(data):
 
 
 class PyCampScheduleProblem:
-    def __init__(self, data):
+    def __init__(self, data,
+                 responsables_collisions_weight=1.0,
+                 participant_collisions_weight=1.0,
+                 responsable_not_available_weight=1.0,
+                 most_voted_weight=1.0,
+                 slot_population_weight=1.0,
+                 project_not_in_priority_slot_weight=1.0,
+                 same_levels_weight=1.0,
+                 same_theme_weight=1.0):
+
         self.data = munchify(data)
+        self.responsables_collisions_weight = responsables_collisions_weight
+        self.participant_collisions_weight = participant_collisions_weight
+        self.responsable_not_available_weight = responsable_not_available_weight
+        self.most_voted_weight = most_voted_weight
+        self.slot_population_weight = slot_population_weight
+        self.project_not_in_priority_slot_weight = project_not_in_priority_slot_weight
+        self.same_levels_weight = same_levels_weight
+        self.same_theme_weight = same_theme_weight
+
         self.project_list = list(self.data.projects.keys())
         self.total_participants = len(set([vote
                                            for pr in self.data.projects.values()
@@ -103,14 +121,14 @@ class PyCampScheduleProblem:
                 project_not_in_priority_slot_cost += 10
 
         return -1 * (
-            responsables_collisions_cost +
-            participant_collisions_cost +
-            responsable_not_available_cost +
-            most_voted_cost +
-            slot_population_cost +
-            project_not_in_priority_slot_cost +
-            same_levels_cost +
-            same_theme_cost
+            responsables_collisions_cost * self.responsables_collisions_weight +
+            participant_collisions_cost * self.participant_collisions_weight +
+            responsable_not_available_cost * self.responsable_not_available_weight +
+            most_voted_cost * self.most_voted_weight +
+            slot_population_cost * self.slot_population_weight +
+            project_not_in_priority_slot_cost * self.project_not_in_priority_slot_weight +
+            same_levels_cost * self.same_levels_weight +
+            same_theme_cost * self.same_theme_weight
         )
 
     def generate_random_state(self):
