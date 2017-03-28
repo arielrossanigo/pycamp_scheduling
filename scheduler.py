@@ -53,6 +53,15 @@ class PyCampScheduleProblem:
                     d[project] = slot
                     new_state = list(d.items())
                     neighboors.append(new_state)
+
+        for proj1, proj2 in combinations(state, 2):
+            d = dict(state)
+            if proj1[1] != proj2[1]:
+                d[proj1[0]] = proj2[1]
+                d[proj2[0]] = proj1[1]
+                new_state = list(d.items())
+                neighboors.append(new_state)
+
         return neighboors
 
     def value(self, state):
