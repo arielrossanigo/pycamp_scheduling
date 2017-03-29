@@ -27,7 +27,7 @@ class PyCampScheduleProblem:
                  same_levels_weight=1.0,
                  same_theme_weight=1.0):
 
-        # force responsables projects to be on their project votes list
+        # force project responsables to be on their project votes list
         for project in data['projects']:
             for resp in data['projects'][project]['responsables']:
                 if resp not in data['projects'][project]['votes']:
