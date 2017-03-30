@@ -28,6 +28,13 @@ class PyCampScheduleProblem:
                  same_theme_weight=1.0):
 
         self.data = munchify(data)
+
+        # force project responsables to be on their project votes list
+        for project in self.data.projects:
+            for resp in self.data.projects[project].responsables:
+                if resp not in self.data.projects[project].votes:
+                    self.data.projects[project].votes.append(resp)
+
         self.responsables_collisions_weight = responsables_collisions_weight
         self.participant_collisions_weight = participant_collisions_weight
         self.responsable_not_available_weight = responsable_not_available_weight
@@ -53,6 +60,16 @@ class PyCampScheduleProblem:
                     d[project] = slot
                     new_state = list(d.items())
                     neighboors.append(new_state)
+
+        # include swipped projects in neighboors
+        for (proj1, slot1), (proj2, slot2) in combinations(state, 2):
+            d = dict(state)
+            if slot1 != slot2:
+                d[proj1] = slot2
+                d[proj2] = slot1
+                new_state = list(d.items())
+                neighboors.append(new_state)
+
         return neighboors
 
     def value(self, state):
