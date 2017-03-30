@@ -61,11 +61,11 @@ class PyCampScheduleProblem:
                     neighboors.append(new_state)
 
         # include swipped projects in neighboors
-        for proj1, proj2 in combinations(state, 2):
+        for (proj1, slot1), (proj2, slot2) in combinations(state, 2):
             d = dict(state)
-            if proj1[1] != proj2[1]:
-                d[proj1[0]] = proj2[1]
-                d[proj2[0]] = proj1[1]
+            if slot1 != slot2:
+                d[proj1] = slot2
+                d[proj2] = slot1
                 new_state = list(d.items())
                 neighboors.append(new_state)
 
