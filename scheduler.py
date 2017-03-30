@@ -27,13 +27,14 @@ class PyCampScheduleProblem:
                  same_levels_weight=1.0,
                  same_theme_weight=1.0):
 
-        # force project responsables to be on their project votes list
-        for project in data['projects']:
-            for resp in data['projects'][project]['responsables']:
-                if resp not in data['projects'][project]['votes']:
-                    data['projects'][project]['votes'].append(resp)
-
         self.data = munchify(data)
+
+        # force project responsables to be on their project votes list
+        for project in self.data.projects:
+            for resp in self.data.projects[project].responsables:
+                if resp not in self.data.projects[project].votes:
+                    self.data.projects[project].votes.append(resp)
+
         self.responsables_collisions_weight = responsables_collisions_weight
         self.participant_collisions_weight = participant_collisions_weight
         self.responsable_not_available_weight = responsable_not_available_weight
